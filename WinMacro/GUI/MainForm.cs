@@ -20,12 +20,15 @@ namespace WinMacro.GUI
         private void OnLoad(Object sender, EventArgs e)
         {
             ReloadMacros();
-            startWithWindowsToolStripMenuItem.Checked = Registry.CurrentUser
-                .OpenSubKey(WindowsRunPath, true).GetValue(RegistryName) != null;
+            RegistryKey startup = Registry.CurrentUser.OpenSubKey(WindowsRunPath, true);
+            startWithWindowsToolStripMenuItem.Checked = startup.GetValue(RegistryName) != null;
+            if (startWithWindowsToolStripMenuItem.Checked && (string)startup.GetValue(RegistryName) != Application.ExecutablePath)
+                startup.SetValue(RegistryName, Application.ExecutablePath);
         }
 
         private void OnShown(Object sender, EventArgs e)
         {
+            Hide();
             Notify("Application running in background.\nAccess through notification area icon.");
         }
 
