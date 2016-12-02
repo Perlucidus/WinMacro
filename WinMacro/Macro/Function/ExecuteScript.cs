@@ -1,5 +1,6 @@
 ﻿using IronPython.Runtime.Types;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using WinMacro.Scripting;
@@ -74,9 +75,10 @@ namespace WinMacro.Macro.Function
 
         private void AddScriptDefinitions()
         {
-            m_script.SetVariable("keys", DynamicHelpers.GetPythonTypeFromType(typeof(Keys)));
-            m_script.SetVariable("keyboard", DynamicHelpers.GetPythonTypeFromType(typeof(KeyboardScriptAPI)));
-            m_script.SetVariable("mouse", DynamicHelpers.GetPythonTypeFromType(typeof(MouseScriptAPI)));
+            m_script.SetVariable("Keys", DynamicHelpers.GetPythonTypeFromType(typeof(Keys)));
+            m_script.SetVariable("Keyboard", DynamicHelpers.GetPythonTypeFromType(typeof(KeyboardScriptAPI)));
+            m_script.SetVariable("Mouse", DynamicHelpers.GetPythonTypeFromType(typeof(MouseScriptAPI)));
+            m_script.SetVariable("StartProcess", new Func<string, Process>(Process.Start));
         }
     }
 }
