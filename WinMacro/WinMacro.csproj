@@ -128,6 +128,7 @@
     <Compile Include="Scripting\KeyboardScriptAPI.cs" />
     <Compile Include="Scripting\MouseScriptAPI.cs" />
     <Compile Include="Scripting\Script.cs" />
+    <Compile Include="Scripting\WindowsScriptAPI.cs" />
     <Compile Include="WinAPI\Keyboard\KeyboardEventAPI.cs" />
     <Compile Include="WinAPI\Keyboard\KeyboardEventFlag.cs" />
     <Compile Include="WinAPI\Mouse\MouseEvent.cs" />

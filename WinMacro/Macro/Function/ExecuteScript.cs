@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using WinMacro.Data;
 using WinMacro.Scripting;
 
 namespace WinMacro.Macro.Function
@@ -45,6 +46,7 @@ namespace WinMacro.Macro.Function
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                File.WriteAllText($@"{MacroManager.AppData}\{DateTime.Now.ToFileTime()}.txt", e.ToString());
                 Program.MainForm.Notify("Failed to execute script.", "", ToolTipIcon.Error);
             }
         }
@@ -75,10 +77,14 @@ namespace WinMacro.Macro.Function
 
         private void AddScriptDefinitions()
         {
+            m_script.SetVariable("Debug", new Action<string>(Console.WriteLine));
+            m_script.SetVariable("Notify", new Action<string, string, ToolTipIcon>(Program.MainForm.Notify));
+
             m_script.SetVariable("Keys", DynamicHelpers.GetPythonTypeFromType(typeof(Keys)));
             m_script.SetVariable("Keyboard", DynamicHelpers.GetPythonTypeFromType(typeof(KeyboardScriptAPI)));
             m_script.SetVariable("Mouse", DynamicHelpers.GetPythonTypeFromType(typeof(MouseScriptAPI)));
-            m_script.SetVariable("StartProcess", new Func<string, Process>(Process.Start));
+            m_script.SetVariable("Windows", DynamicHelpers.GetPythonTypeFromType(typeof(WindowsScriptAPI)));
+            m_script.SetVariable("Process", DynamicHelpers.GetPythonTypeFromType(typeof(Process)));
         }
     }
 }

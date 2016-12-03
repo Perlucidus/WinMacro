@@ -11,8 +11,8 @@ namespace WinMacro.Data
 {
     public static class MacroManager
     {
-        private const string Path = @"WinMacro\macros.dat";
-        private static string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        private const string Path = "macros.dat";
+        public static string AppData = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\WinMacro";
         public static Dictionary<uint, MacroEntry> Macros;
         private static LowLevelKeyboardHook LLKH;
         private static List<uint> CurrentMacro;

@@ -131,7 +131,7 @@ namespace WinMacro.GUI
 
         private void OnNotificationClick(Object sender, EventArgs e)
         {
-            Show();
+            //Show();
         }
 
         private void OnSetWindowsStartup(Object sender, EventArgs e)
