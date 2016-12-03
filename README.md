@@ -1,6 +1,11 @@
 # WinMacro
 Macro configuration program
 
+## Required Libraries:
+LLHook - https://github.com/Perlucidus/LLHook/tree/master
+
+IronPython (Available through NuGet)
+
 ## Demo:
 
 ### Macro View:
